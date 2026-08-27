@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GTC Global Training Corporal. Desarrollo de talento y desempeño organizacional.">
+  <title>GTC | Global Training Corporal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#142420; --paper:#f6f4ee; --lime:#c9ee5b; --coral:#ee7b5c; --line:rgba(20,36,32,.17); --muted:#5c6965; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:"Roboto",sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px, calc(100% - 48px)); margin:auto; }
+    .topbar { position:absolute; z-index:2; left:0; right:0; color:#fff; }
+    .dev-banner { padding:9px 18px; background:var(--coral); color:var(--ink); text-align:center; font-size:12px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+    .nav { height:86px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.35); }
+    .brand { display:flex; align-items:center; gap:10px; font-size:18px; font-weight:700; letter-spacing:.025em; white-space:nowrap; }
+    .brand-logo { width:42px; height:42px; object-fit:contain; }
+    .brand-mark { width:35px; height:35px; border:2px solid var(--lime); display:grid; place-items:center; font-size:12px; color:var(--lime); }
+    .nav-links { display:flex; align-items:center; gap:29px; }
+    .nav-links a { font-size:16px; font-weight:700; }
+    .nav-links a:hover { color:var(--lime); }
+    .nav-cta.mobile-blog { display:none; }
+    .nav-cta, .button { border:0; display:inline-flex; align-items:center; justify-content:center; font:600 14px "Roboto",sans-serif; cursor:pointer; }
+    .nav-cta { padding:11px 17px; background:var(--lime); color:var(--ink); }
+    .hero { min-height:720px; position:relative; color:#fff; display:flex; align-items:end; overflow:hidden; background:#173b35; }
+    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,26,23,.91) 0%,rgba(10,26,23,.63) 47%,rgba(10,26,23,.16) 100%),url("gtc-system-background.png") center/cover; }
+    .hero-content { position:relative; padding:0 0 74px; max-width:760px; }
+    .eyebrow { display:flex; align-items:center; gap:10px; margin:0 0 19px; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }
+    .eyebrow::before { content:""; width:31px; height:2px; background:var(--lime); }
+    h1 { max-width:820px; font:400 32px/1.25 "Roboto",sans-serif; letter-spacing:0; margin:0; }
+    .hero-title-brand { display:block; font-size:clamp(66px,9vw,118px); font-weight:900; line-height:.9; margin-bottom:17px; text-shadow:4px 5px 8px rgba(0,0,0,.72); }
+    .hero .eyebrow { color:var(--lime); }
+    .hero .eyebrow::before { display:none; }
+    .hero-title-copy { color:#ffe18a; font-weight:700; }
+    .hero p { max-width:500px; margin:25px 0 32px; font-size:17px; line-height:1.6; color:rgba(255,255,255,.87); }
+    .hero h1 + .button { margin-top:32px; }
+    .button { background:var(--lime); color:var(--ink); padding:15px 22px; gap:12px; transition:transform .2s,background .2s; }
+    .button:hover { background:#dbfa86; transform:translateY(-2px); }
+    .arrow { font-size:20px; line-height:10px; }
+    .hero-note { position:absolute; z-index:1; right:max(24px,calc((100vw - 1180px)/2)); bottom:50px; writing-mode:vertical-rl; transform:rotate(180deg); color:rgba(255,255,255,.72); font-size:11px; letter-spacing:.13em; text-transform:uppercase; }
+    section { padding:106px 0; }
+    .intro { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; border-bottom:1px solid var(--line); }
+    .intro .eyebrow { font-size:16px; }
+    h2 { margin:0; font:500 clamp(33px,4.1vw,54px)/1.08 "Roboto",sans-serif; letter-spacing:0; }
+    .body-copy { font-size:18px; line-height:1.65; color:var(--muted); margin:0; }
+    .body-copy strong { color:var(--ink); font-weight:600; }
+    .method-overview { padding:106px 0 82px; }
+    .method-overview > .shell > .eyebrow { font-size:16px; }
+    .method-overview h2 { max-width:750px; margin-bottom:45px; }
+    .method-overview h2 span { display:block; margin-top:11px; color:var(--coral); font-size:clamp(27px,3.2vw,42px); }
+    .method-explainer { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; padding-top:29px; border-top:1px solid var(--line); }
+    .method-explainer h3 { margin:0; font:700 14px/1.3 "Roboto",sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+    .method-explainer p { max-width:600px; margin:0; color:var(--muted); font-size:18px; line-height:1.65; }
+    .element-showcase { padding:106px 0; background:#fff; scroll-margin-top:20px; }
+    .element-heading { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:42px; }
+    .element-heading .eyebrow { margin:0; font-size:16px; }
+    .element-heading p:last-child { max-width:410px; margin:0; color:var(--muted); font-size:16px; line-height:1.55; }
+    .element-figure { position:relative; margin:0; overflow:hidden; background:#9a8d80; }
+    .element-figure img { display:block; width:100%; height:clamp(330px,55vw,660px); object-fit:cover; object-position:center 58%; }
+    .element-caption { position:absolute; left:0; bottom:0; margin:0; padding:24px 30px; color:#fff; background:linear-gradient(90deg,rgba(10,26,23,.9),rgba(10,26,23,.25)); font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+    .element-content { display:grid; grid-template-columns:.7fr 1.3fr; gap:70px; padding:42px 0 0; }
+    .element-content h3 { margin:0; font:500 clamp(30px,3.8vw,48px)/1.05 "Roboto",sans-serif; }
+    .element-content h3 span { display:block; margin-top:12px; color:var(--coral); font-size:14px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .element-content p { margin:0; color:var(--muted); font-size:17px; line-height:1.72; }
+    .element-content strong { color:var(--ink); font-weight:700; }
+    .pilares { background:var(--ink); color:#fff; }
+    .pilares .section-head .eyebrow { font-size:16px; }
+    .section-head { display:flex; justify-content:space-between; gap:40px; align-items:end; margin-bottom:49px; }
+    .section-head p { max-width:370px; color:rgba(255,255,255,.68); margin:0; line-height:1.55; }
+    .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.28); }
+    .pillar { min-height:302px; padding:26px 29px 30px 0; display:flex; flex-direction:column; border-right:1px solid rgba(255,255,255,.28); }
+    .pillar + .pillar { padding-left:29px; }
+    .pillar:last-child { border-right:0; }
+    .number { color:var(--lime); font-size:13px; font-weight:700; letter-spacing:.09em; }
+    .pillar h3 { font:500 29px/1.15 "Roboto",sans-serif; margin:45px 0 16px; }
+    .pillar p { color:rgba(255,255,255,.67); line-height:1.55; margin:0; font-size:15px; max-width:260px; }
+    .pillars-unity { margin:44px 0 0; padding-top:25px; border-top:1px solid rgba(255,255,255,.28); color:var(--lime); font-size:clamp(21px,3vw,34px); font-weight:700; letter-spacing:.04em; }
+    .method { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+    .method-image { min-height:458px; background:#f9f7bd url("gtc-system-star.png") center/contain no-repeat; }
+    .method-copy .eyebrow { color:var(--coral); }
+    .method-copy .eyebrow::before { background:var(--coral); }
+    .method-copy h2 { margin-bottom:22px; }
+    .method-quote { margin:30px 0 0; padding:22px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-size:20px; font-weight:600; line-height:1.45; }
+    .method-command { margin:23px 0 0; color:var(--coral); font-size:15px; font-weight:700; letter-spacing:.055em; line-height:1.55; }
+    .method-command span { display:block; margin-bottom:7px; color:var(--muted); font-size:11px; letter-spacing:.1em; }
+    .steps { margin:31px 0 0; padding:0; list-style:none; border-top:1px solid var(--line); }
+    .steps li { display:flex; gap:18px; padding:15px 0; border-bottom:1px solid var(--line); font-size:15px; }
+    .steps span { color:var(--coral); font-weight:700; font-size:12px; }
+    .contact { padding:84px 0; background:var(--lime); }
+    .audience { padding:93px 0; background:#fff; }
+    .audience-inner { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; }
+    .audience p:last-child { max-width:580px; margin:0; color:var(--muted); font-size:18px; line-height:1.65; }
+    .contact-inner { display:grid; grid-template-columns:1.1fr 1fr; gap:100px; }
+    .contact h2 { max-width:500px; }
+    .contact p { line-height:1.6; max-width:420px; }
+    .contact-details { display:grid; align-content:start; gap:25px; padding-top:5px; }
+    .whatsapp-link { justify-self:start; padding:17px 24px; background:var(--ink); color:#fff; font-size:16px; }
+    .whatsapp-link:hover { background:#263b36; }
+    .contact-links { border-top:1px solid rgba(20,36,32,.42); }
+    .contact-link { display:flex; justify-content:space-between; gap:24px; align-items:center; padding:17px 0; border-bottom:1px solid rgba(20,36,32,.42); font-size:16px; }
+    .contact-link span { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .contact-link strong { font-weight:500; overflow-wrap:anywhere; }
+    .contact-link:hover strong { text-decoration:underline; }
+    form { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-content:start; }
+    label { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    input, textarea { display:block; width:100%; margin-top:8px; padding:12px 0; color:var(--ink); border:0; border-bottom:1px solid rgba(20,36,32,.52); background:transparent; outline:none; font:16px "Roboto",sans-serif; border-radius:0; }
+    textarea { height:81px; resize:vertical; }
+    .wide { grid-column:span 2; }
+    .submit { justify-self:start; margin-top:4px; padding:14px 21px; background:var(--ink); color:#fff; }
+    .submit:hover { background:#263b36; }
+    footer { padding:27px 0; background:var(--ink); color:rgba(255,255,255,.7); font-size:13px; }
+    footer .shell { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:700px) {
+      .shell { width:min(100% - 36px, 1180px); }
+      .dev-banner { padding:8px 12px; font-size:10px; letter-spacing:.07em; } .nav { height:70px; } .brand { gap:6px; font-size:14px; } .brand-logo { width:30px; height:30px; } .nav-links { display:none; } .nav-cta { font-size:12px; padding:9px 12px; } .nav-cta.mobile-blog { display:inline-flex; }
+      .hero { min-height:650px; } .hero::before { background:linear-gradient(0deg,rgba(10,26,23,.91),rgba(10,26,23,.42)),url("gtc-system-background.png") center/cover; }
+      .hero-content { padding-bottom:56px; } .hero-note { display:none; } .hero p { font-size:16px; }
+      section { padding:70px 0; } .intro, .method, .contact-inner, .method-explainer, .audience-inner { grid-template-columns:1fr; gap:32px; }
+      .section-head { display:block; } .section-head p { margin-top:20px; }
+      .pillars-grid { grid-template-columns:1fr; } .pillar, .pillar + .pillar { min-height:0; padding:24px 0 31px; border-right:0; border-bottom:1px solid rgba(255,255,255,.28); }
+      .method-overview { padding:70px 0 42px; } .method-overview h2 { margin-bottom:32px; } .method-explainer { padding-top:24px; } .pillar h3 { margin:28px 0 12px; } .pillars-unity { font-size:20px; line-height:1.5; } .method-image { min-height:310px; order:2; } .method-copy { order:1; } .audience { padding:70px 0; }
+      .element-showcase { padding:70px 0; } .element-heading { display:block; margin-bottom:30px; } .element-heading p:last-child { margin-top:14px; } .element-figure img { height:360px; } .element-caption { padding:18px; font-size:11px; } .element-content { grid-template-columns:1fr; gap:22px; padding-top:30px; } .element-content p { font-size:16px; }
+      form { grid-template-columns:1fr; } .wide { grid-column:auto; } .contact-details { padding-top:0; } .whatsapp-link { width:100%; } .contact-link { align-items:flex-start; flex-direction:column; gap:5px; } footer .shell { display:block; } footer p { margin:8px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="dev-banner" role="status">Versión en desarrollo · Contenido sujeto a modificaciones</div><nav class="nav shell" aria-label="Principal"><a class="brand" href="#inicio" aria-label="GTC Inicio"><img class="brand-logo" src="gtc-logo.png" alt="Logo GTC"><span>GTC | Global Training Corporal</span></a><div class="nav-links"><a href="#metodo">Método</a><a href="#gtc-element">GTC Element</a><a href="#pilares">Pilares</a><a href="https://www.gtcglobaltrainingcorporal.com/" target="_blank" rel="noopener noreferrer">Blog</a><a class="nav-cta" href="#contacto">Conversemos</a></div><a class="nav-cta mobile-blog" href="https://www.gtcglobaltrainingcorporal.com/" target="_blank" rel="noopener noreferrer">Blog</a></nav></header>
+  <main>
+    <section class="hero" id="inicio"><div class="shell hero-content"><p class="eyebrow">El cuerpo aprende cuando se lo entrena con atención y método</p><h1><strong class="hero-title-brand">GTC System</strong><span class="hero-title-copy">Es un sistema de entrenamiento corporal creado para desarrollar fuerza, coordinación, estabilidad y conciencia del movimiento</span></h1><a class="button" href="https://www.gtcglobaltrainingcorporal.com/" target="_blank" rel="noopener noreferrer">Conocer nuestro método <span class="arrow">→</span></a></div></section>
+    <section class="shell intro"><p class="eyebrow">GTC System</p><p class="body-copy"><strong>El cuerpo aprende cuando se lo entrena con intención.</strong> GTC System propone un trabajo corporal que desarrolla fuerza, movilidad, control y conciencia en cada práctica.</p></section>
+    <section class="method-overview" id="metodo"><div class="shell"><p class="eyebrow">GTC Global Training Corporal</p><h2>EL MÉTODO<span>Entrenar fuerza, control y conciencia corporal.</span></h2><div class="method-explainer"><h3>¿Qué es GTC System?</h3><p>GTC System es un método de entrenamiento corporal que busca desarrollar el cuerpo mediante un trabajo organizado de fuerza, movilidad, control y conciencia corporal. No es solamente ejercicio físico: cada movimiento se realiza con intención, precisión y control.</p></div></div></section>
+    <section class="element-showcase" id="gtc-element" aria-labelledby="gtc-element-title"><div class="shell"><div class="element-heading"><p class="eyebrow">GTC Element</p><p>Una herramienta propia de GTC System diseñada para esta práctica, donde la carga no solo se mueve: se aprende a controlar.</p></div><figure class="element-figure"><img src="gtc-element.jpg" alt="GTC Element, dispositivo metálico de entrenamiento corporal" loading="lazy"><figcaption class="element-caption">GTC Element · Herramienta del sistema</figcaption></figure><div class="element-content"><h3 id="gtc-element-title">GTC Element<span>Herramienta de entrenamiento</span></h3><p><strong>GTC Element</strong> es una herramienta de entrenamiento creada para integrarse a <strong>GTC System</strong>, registrada ante el <strong>Instituto Nacional de la Propiedad Industrial (INPI), Modelo N.º 110393</strong>, bajo la denominación <em>“Pesa para entrenamiento físico-GTC Element”</em>. Su diseño permite <strong>adecuar la carga mediante discos removibles</strong>, adaptando el peso a cada practicante, con una referencia aproximada del <strong>10 % de su peso corporal</strong>. Su utilización permite trabajar fuerza, estabilidad y control, poniendo especial atención en el eje, la calidad del movimiento y la respiración consciente. Más que mover un peso, la propuesta es aprender a <strong>administrar la carga desde el cuerpo</strong>, integrando técnica, respiración y conciencia. Así, GTC Element se convierte en una herramienta para <strong>Templar, Flexibilizar y Dominar</strong>: no se trata solamente de lo que movemos, sino de <strong>cómo aprendemos a movernos</strong>.</p></div></div></section>
+    <section class="pilares" id="pilares"><div class="shell"><div class="section-head"><div><p class="eyebrow">GTC System</p><h2>Pilares</h2></div><p>GTC System se sostiene sobre tres pilares fundamentales.</p></div><div class="pillars-grid"><article class="pillar"><span class="number">01</span><h3>Templar</h3><p>Desarrollar fuerza, firmeza y capacidad de sostén. Preparar el cuerpo para responder con mayor estabilidad, control y seguridad.</p></article><article class="pillar"><span class="number">02</span><h3>Flexibilizar</h3><p>Conservar y ampliar la movilidad, reducir rigideces y favorecer un movimiento más libre, eficiente y adaptable.</p></article><article class="pillar"><span class="number">03</span><h3>Dominar</h3><p>Integrar fuerza, movilidad y conciencia corporal para lograr un mayor control del movimiento y de las acciones del cuerpo.</p></article></div><p class="pillars-unity">TEMPLAR · FLEXIBILIZAR · DOMINAR</p></div></section>
+    <section class="shell method"><div class="method-image" role="img" aria-label="Práctica de entrenamiento corporal"></div><div class="method-copy"><p class="eyebrow">La práctica</p><h2>Aprender a reconocer y dominar el movimiento.</h2><p class="body-copy">Las sesiones integran ejercicios de fuerza, movilidad, estabilidad, equilibrio y control corporal. La búsqueda no es limitarse a ejecutar movimientos, sino aprender a reconocerlos y dominarlos.</p><p class="method-quote">“El cuerpo aprende cuando se lo entrena con rigor, método y conciencia.”</p><p class="method-command"><span>Consigna GTC System</span>EJE FIRME · PALABRA ÍNTEGRA · ACCIONES CORRECTAS</p></div></section>
+    <section class="audience"><div class="shell audience-inner"><div><p class="eyebrow">¿A quién está dirigido?</p><h2>Una práctica para desarrollar capacidades con conciencia.</h2></div><p>GTC System está dirigido a personas que buscan desarrollar sus capacidades físicas y mejorar su relación consciente con el movimiento, adaptando el trabajo a las posibilidades individuales.</p></div></section>
+    <section class="contact" id="contacto"><div class="shell contact-inner"><div><p class="eyebrow">Hablemos</p><h2>¿Querés conocer GTC System o saber cómo comenzar?</h2><p>Escribime y conversemos sobre la práctica, las modalidades y los horarios disponibles.</p></div><div class="contact-details"><a class="button whatsapp-link" href="https://wa.me/543516510043?text=Hola%2C%20quiero%20conocer%20GTC%20System." target="_blank" rel="noopener noreferrer">Hablemos por WhatsApp <span class="arrow">→</span></a><div class="contact-links"><a class="contact-link" href="mailto:gtcglobaltrainingcorporal@gmail.com"><span>Correo electrónico</span><strong>gtcglobaltrainingcorporal@gmail.com</strong></a><a class="contact-link" href="https://www.youtube.com/@gustavocastroGTC_1" target="_blank" rel="noopener noreferrer"><span>YouTube</span><strong>@gustavocastroGTC_1</strong></a></div></div></div></section>
+  </main>
+  <footer><div class="shell"><p>GTC Global Training Corporal</p><p>El cuerpo no engaña.</p></div></footer>
+</body>
+</html>
